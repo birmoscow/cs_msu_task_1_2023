@@ -1,0 +1,1 @@
+gcc -rdynamic sol.c linear.c random.c -o prg -ldl

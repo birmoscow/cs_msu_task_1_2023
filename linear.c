@@ -17,7 +17,6 @@ static double
 next(RandomSource *src)
 {
     if (src) {
-        printf("OTLADKA %f %f\n", MUL * seed + INC, seed);
         seed = (MUL * seed + INC) % MOD;
         return (double) seed / MOD;
     }

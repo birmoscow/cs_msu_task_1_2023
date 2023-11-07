@@ -53,13 +53,20 @@ main(int argc, char **argv)
             exit(1);
         }
         rr = ((RandomSource *(*) (const char *)) sym)(argv[FOO_ARG]);
+    } else if (strncmp(name_r, argv[FOO_NAME], sizeof(name_r) / sizeof(name_r[0])) == 0) {
+        sym = dlsym(handle, "random_random_factory");
+        if (sym == NULL) {
+            fprintf(stderr, "dlsym err\n");
+            exit(1);
+        }
+        rr = ((RandomSource *(*) (const char *)) sym)(argv[FOO_ARG]);
     } else {
         fprintf(stderr, "STR ERR\n");
         exit(1);
     }
 
     for (int i = 0; i < count; i++) {
-        printf("%f\n", rr->ops->next(rr));
+        printf("%.10g\n", rr->ops->next(rr));
     }
     rr->ops->destroy(rr);
 
