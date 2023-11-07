@@ -47,7 +47,16 @@ RandomSource
     seed = count & MASK;
 
     RandomSource *note = calloc(1, sizeof(*note));
+    if (note == NULL) {
+        fprintf(stderr, "calloc err\n");
+        exit(1);
+    }
     note->ops = calloc(1, sizeof(*(note->ops)));
+    if (note->ops == NULL) {
+        fprintf(stderr, "calloc err\n");
+        free(note);
+        exit(1);
+    }
     note->ops->next = &next;
     note->ops->destroy = &destroy;
     return note;

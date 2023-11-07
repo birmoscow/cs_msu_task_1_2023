@@ -61,7 +61,7 @@ main(int argc, char **argv)
         }
         rr = ((RandomSource *(*) (const char *)) sym)(argv[FOO_ARG]);
     } else {
-        fprintf(stderr, "STR ERR\n");
+        fprintf(stderr, "Input error\n");
         exit(1);
     }
 
