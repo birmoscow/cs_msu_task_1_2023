@@ -16,10 +16,12 @@ enum Consts {
 static double
 next(RandomSource *src)
 {
+    double res = 0;
     if (src) {
         seed = (MUL * seed + INC) % MOD;
-        return (double) seed / MOD;
+        res = (double) seed / MOD;
     }
+    return res;
 }
 
 static RandomSource
