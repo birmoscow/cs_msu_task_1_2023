@@ -66,8 +66,9 @@ main(int argc, char **argv)
         printf("%.10g\n", rr->ops->next(rr));
     }
     rr->ops->destroy(rr);
-    if (!dlclose(handle)) {
-        fprintf(stderr, "dclose err\n");
+    errno = 0;
+    if (dlclose(handle)) {
+        fprintf(stderr, "dlclose err  %s ?\n", strerror(errno));
         exit(1);
     }
     return 0;

@@ -1,12 +1,21 @@
 CC = cc
 CFLAGS = -Wall -Werror
-LD = -ldl
+LD = cc
 LDFLAGS = -rdynamic
 
 .PHONY: all clean
 
-all:
-	$(CC) $(LDFLAGS) printrandom.c linear.c random.c $(CFLAGS) -o printrandom $(LD)
+all: printrandom.o linear.o random.o
+	$(CC) $(CFLAGS) -rdynamic  printrandom.o linear.o random.o -o printrandom -ldl
+
+printrandom.o:
+	$(LD) $(LDFLAGS) -rdynamic printrandom.c -c
+
+linear.o:
+	$(LD) $(LDFLAGS) -rdynamic linear.c -c
+
+random.o:
+	$(LD) $(LDFLAGS) -rdynamic random.c -c
 
 clean:
 	$(RM) *~ *.o printrandom
