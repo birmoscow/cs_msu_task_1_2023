@@ -8,7 +8,8 @@
 
 int fd;
 
-enum {
+enum
+{
     BYTES = 4,
 };
 
@@ -25,8 +26,8 @@ next(RandomSource *src)
     return (double) buf / ULLONG_MAX;
 }
 
-static RandomSource
-*destroy(RandomSource *src)
+static RandomSource *
+destroy(RandomSource *src)
 {
     if (src && src->ops) {
         free(src->ops);
@@ -43,8 +44,9 @@ static RandomSource
     return NULL;
 }
 
-RandomSource
-*random_random_factory(const char *params) {
+RandomSource *
+random_random_factory(const char *params)
+{
     fd = open("/dev/urandom", O_RDONLY);
     if (fd == -1) {
         fprintf(stderr, "open err\n");

@@ -3,9 +3,10 @@
 #include <stdlib.h>
 #include <errno.h>
 
-unsigned long long seed;
+static unsigned long long seed;
 
-enum Consts {
+enum Consts
+{
     MUL = 1103515245,
     INC = 12345,
     MOD = 0x40000000,
@@ -24,8 +25,8 @@ next(RandomSource *src)
     return res;
 }
 
-static RandomSource
-*destroy(RandomSource *src)
+static RandomSource *
+destroy(RandomSource *src)
 {
     if (src && src->ops) {
         free(src->ops);
@@ -36,8 +37,8 @@ static RandomSource
     return NULL;
 }
 
-RandomSource
-*random_linear_factory(const char *params)
+RandomSource *
+random_linear_factory(const char *params)
 {
     char *eptr = NULL;
     errno = 0;

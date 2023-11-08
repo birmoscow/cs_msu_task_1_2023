@@ -4,8 +4,8 @@
 typedef struct RandomSource RandomSource;
 typedef struct RandomSourceOperations
 {
-    RandomSource *(*destroy) (RandomSource*);
-    double (*next) (RandomSource*);
+    RandomSource *(*destroy)(RandomSource *);
+    double (*next)(RandomSource *);
 } RandomSourceOperations;
 
 struct RandomSource
