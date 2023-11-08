@@ -8,7 +8,8 @@
 const char name_l[] = "linear";
 const char name_r[] = "random";
 
-enum {
+enum
+{
     ARGC = 4,
     FOO_NAME = 1,
     FOO_SIZE = 2,
@@ -41,7 +42,6 @@ main(int argc, char **argv)
         exit(1);
     }
 
-
     void *sym;
     if (strncmp(name_l, argv[FOO_NAME], sizeof(name_l) / sizeof(name_l[0])) == 0) {
         sym = dlsym(handle, "random_linear_factory");
@@ -49,14 +49,14 @@ main(int argc, char **argv)
             fprintf(stderr, "dlsym err\n");
             exit(1);
         }
-        rr = ((RandomSource *(*) (const char *)) sym)(argv[FOO_ARG]);
+        rr = ((RandomSource * (*) (const char *) ) sym)(argv[FOO_ARG]);
     } else if (strncmp(name_r, argv[FOO_NAME], sizeof(name_r) / sizeof(name_r[0])) == 0) {
         sym = dlsym(handle, "random_random_factory");
         if (sym == NULL) {
             fprintf(stderr, "dlsym err\n");
             exit(1);
         }
-        rr = ((RandomSource *(*) (const char *)) sym)(argv[FOO_ARG]);
+        rr = ((RandomSource * (*) (const char *) ) sym)(argv[FOO_ARG]);
     } else {
         fprintf(stderr, "Input error\n");
         exit(1);
