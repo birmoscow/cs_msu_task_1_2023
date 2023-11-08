@@ -4,13 +4,13 @@
 #include <errno.h>
 #include <limits.h>
 
-static unsigned long long seed;
+static unsigned seed;
 
 enum Consts
 {
     MUL = 1103515245,
     INC = 12345,
-    MOD = 0x40000000,
+    MOD = 0x80000000,
     MASK = 0x7FFFFFFF,
     BASE = 10
 };
@@ -19,8 +19,8 @@ static double
 next(RandomSource *src)
 {
     double res = 0;
-    seed = (MUL * seed + INC) % MOD;
-    res = (double) seed / ULLONG_MAX;
+    seed = (MUL * seed + INC) % (unsigned) MOD;
+    res = (double) seed / (unsigned) MOD;
     return res;
 }
 
