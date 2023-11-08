@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <limits.h>
 
 static unsigned long long seed;
 
@@ -18,10 +19,8 @@ static double
 next(RandomSource *src)
 {
     double res = 0;
-    if (src) {
-        seed = (MUL * seed + INC) % MOD;
-        res = (double) seed / MOD;
-    }
+    seed = (MUL * seed + INC) % MOD;
+    res = (double) seed / ULLONG_MAX;
     return res;
 }
 
